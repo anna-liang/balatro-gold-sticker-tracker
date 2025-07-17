@@ -1,0 +1,32 @@
+{
+  "1": {
+    "name": "Joker",
+    "uri": "",
+    "sticker": null,
+    "description": "+4 Mult"
+  },
+  "2": {
+    "name": "Greedy Joker",
+    "uri": "",
+    "sticker": null,
+    "description": "Played cards with Diamond suit give +3 Mult when scored"
+  },
+  "3": {
+    "name": "Lusty Joker",
+    "uri": "",
+    "sticker": null,
+    "description": "Played cards with Heart suit give +3 Mult when scored"
+  },
+  "4": {
+    "name": "Wrathful Joker",
+    "uri": "",
+    "sticker": null,
+    "description": "Played cards with Spade suit give +3 Mult when scored"
+  },
+  "5": {
+    "name": "Gluttonous Joker",
+    "uri": "",
+    "sticker": null,
+    "description": "Played cards with Club suit give +3 Mult when scored"
+  }
+}

@@ -5,36 +5,18 @@ import styles from './JokerTile.module.css';
 import JokerModal from 'components/JokerModal/JokerModal';
 
 function JokerTile({ id, name, uri, sticker }: Joker) {
-  const defaultBorderColor = '#0a263a';
-  const [borderColour, setBorderColour] = useState(defaultBorderColor);
   const [openModal, setOpenModal] = useState(false);
 
-  const handleOnMouseEnter = () => {
-    setBorderColour('#415055ff');
-  };
-
-  const handleOnMouseLeave = () => {
-    setBorderColour(defaultBorderColor);
-  };
-
   const handleOpenModal = () => {
-    // console.log('open');
     setOpenModal(true);
   };
 
   const handleCloseModal = () => {
-    // console.log('close');
     setOpenModal(false);
   };
 
   return (
-    <div
-      className={styles.jokerTile}
-      style={{ borderColor: borderColour }}
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
-      onClick={handleOpenModal}
-    >
+    <div className={styles.jokerTile} onClick={handleOpenModal}>
       <div
         style={{
           position: 'absolute',

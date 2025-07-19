@@ -3,6 +3,7 @@ import { Sticker } from 'types';
 import styles from './JokerModal.module.css';
 import { stickersUriPath } from '../../constants';
 import { useState } from 'react';
+import axios from 'axios';
 
 function JokerModal({
   isOpen,
@@ -40,7 +41,13 @@ function JokerModal({
     return stickers;
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const testid = 151;
+    await axios
+      .put(`http://localhost:8080/joker/${testid}`, {
+        sticker: currentSticker,
+      })
+      .catch((error) => console.error(error));
     onClose();
   };
 

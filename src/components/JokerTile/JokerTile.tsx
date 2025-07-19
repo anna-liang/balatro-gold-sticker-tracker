@@ -17,21 +17,14 @@ function JokerTile({ id, name, uri, sticker }: Joker) {
 
   return (
     <div className={styles.jokerTile} onClick={handleOpenModal}>
-      <div
-        style={{
-          position: 'absolute',
-          top: '0px',
-        }}
-      >
-        <JokerModal
-          isOpen={openModal}
-          onClose={handleCloseModal}
-          id={id}
-          name={name}
-          uri={uri}
-          sticker={sticker}
-        />
-      </div>
+      <JokerModal
+        isOpen={openModal}
+        onClose={handleCloseModal}
+        id={id}
+        name={name}
+        uri={uri}
+        sticker={sticker}
+      />
       <div>
         {sticker ? (
           <img

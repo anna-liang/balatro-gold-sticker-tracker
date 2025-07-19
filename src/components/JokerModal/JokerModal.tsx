@@ -37,25 +37,42 @@ function JokerModal({
     return stickers;
   };
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    onClose();
+  };
 
   return (
-    <Dialog open={isOpen} onClose={onClose}>
-      <DialogPanel>
-        <div className={styles.modal}>
-          <img src={uri} alt={`${name}`} className={styles.jokerImg} />
-          <div className={styles.jokerName}>{name.toUpperCase()}</div>
-          <div className={styles.stickers}>{renderStickers()}</div>
-          <div className={styles.buttons}>
-            <Button className={styles.saveButton} onClick={handleSave}>
-              SAVE
-            </Button>
-            <Button className={styles.cancelButton} onClick={onClose}>
-              CANCEL
-            </Button>
+    <Dialog
+      open={isOpen}
+      onClose={() => {
+        setCurrentSticker(sticker);
+        onClose();
+      }}
+      className={styles.modal}
+    >
+      <div className={styles.panelContainer}>
+        <DialogPanel>
+          <div className={styles.modelContent}>
+            <img src={uri} alt={`${name}`} className={styles.jokerImg} />
+            <div className={styles.jokerName}>{name.toUpperCase()}</div>
+            <div className={styles.stickers}>{renderStickers()}</div>
+            <div className={styles.buttons}>
+              <Button className={styles.saveButton} onClick={handleSave}>
+                SAVE
+              </Button>
+              <Button
+                className={styles.cancelButton}
+                onClick={() => {
+                  setCurrentSticker(sticker);
+                  onClose();
+                }}
+              >
+                CANCEL
+              </Button>
+            </div>
           </div>
-        </div>
-      </DialogPanel>
+        </DialogPanel>
+      </div>
     </Dialog>
   );
 }

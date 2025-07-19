@@ -5,6 +5,8 @@
 
 .jokerName {
   color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .stickers {
@@ -18,29 +20,51 @@
 }
 
 .modal {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  overflow-y: auto;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+.panelContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modelContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #0c2e45;
-  position: absolute;
+  position: relative;
+  width: 60vw;
+  height: 60vh;
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: #248cd1;
+  border-style: solid;
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
-  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .saveButton {
-  width: 70px;
-  height: 30px;
+  width: 120px;
+  height: 50px;
   text-align: center;
   border-color: #1b75e4;
   border-radius: 4px;
   background-color: #1b75e4;
   color: white;
-  margin-right: 10px;
+  margin-right: 20px;
+  font-size: 20px;
 }
 
 .saveButton:hover {
@@ -48,11 +72,12 @@
 }
 
 .cancelButton {
-  width: 70px;
-  height: 30px;
+  width: 120px;
+  height: 50px;
   color: white;
   border-radius: 4px;
   background-color: #0c2e45;
+  font-size: 20px;
 }
 
 .cancelButton:hover {

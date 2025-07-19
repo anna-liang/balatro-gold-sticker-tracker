@@ -15,6 +15,17 @@ function JokerTile({ id, name, uri, sticker }: Joker) {
     setOpenModal(false);
   };
 
+  const getStickerStyle = () => {
+    if (name === 'Wee Joker') {
+      return styles.weeJokerSticker;
+    } else if (name === 'Golden Ticket') {
+      return styles.goldenTicketSticker;
+    } else if (name === 'Square Joker') {
+      return styles.squareJokerSticker;
+    }
+    return styles.sticker;
+  };
+
   return (
     <div className={styles.jokerTile} onClick={handleOpenModal}>
       <JokerModal
@@ -30,7 +41,7 @@ function JokerTile({ id, name, uri, sticker }: Joker) {
           <img
             src={`${stickersUriPath}${sticker}-sticker.png`}
             alt={`${name}`}
-            className={styles.sticker}
+            className={getStickerStyle()}
           />
         ) : null}
         <img src={uri} alt={`${name}`} className={styles.jokerImg} />

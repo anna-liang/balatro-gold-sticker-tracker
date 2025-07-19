@@ -22,14 +22,17 @@ function JokerModal({
   const [currentSticker, setCurrentSticker] = useState(sticker);
 
   const renderStickers = () => {
-    const stickers = Object.values(Sticker).map((s) => {
+    const stickers = Object.values(Sticker).map((s, i) => {
+      const currentStickerIndex = currentSticker
+        ? Object.values(Sticker).findIndex((s2) => s2 === currentSticker)
+        : -1;
       return (
         <img
           src={`${stickersUriPath}${s}-sticker.png`}
           alt={`${name}`}
           key={s}
           className={styles.sticker}
-          style={{ opacity: s === currentSticker ? '1.0' : '0.5' }}
+          style={{ opacity: currentStickerIndex >= i ? '1.0' : '0.5' }}
           onClick={() => setCurrentSticker(s)}
         />
       );

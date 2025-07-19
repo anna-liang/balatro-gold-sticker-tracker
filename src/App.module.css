@@ -1,6 +1,7 @@
 .app {
   text-align: center;
   background-color: #0c2e45;
+  min-height: 100vh;
 }
 
 .heading {
@@ -8,7 +9,9 @@
   flex-direction: row;
   justify-content: center;
   padding-top: 30px;
-  margin-bottom: 40px;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+  background-color: #8a0620;
 }
 
 .icon {

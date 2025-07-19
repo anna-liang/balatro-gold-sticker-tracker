@@ -7,6 +7,7 @@
   color: white;
   margin-top: 15px;
   margin-bottom: 15px;
+  font-size: 28px;
 }
 
 .stickers {
@@ -39,7 +40,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #0c2e45;
+  background-color: #01295f;
   position: relative;
   width: 60vw;
   height: 60vh;
@@ -76,10 +77,10 @@
   height: 50px;
   color: white;
   border-radius: 4px;
-  background-color: #0c2e45;
+  background-color: #01295f;
   font-size: 20px;
 }
 
 .cancelButton:hover {
-  background-color: #071926;
+  background-color: #011627;
 }

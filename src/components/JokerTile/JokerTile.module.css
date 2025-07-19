@@ -13,11 +13,12 @@
 }
 
 .jokerTile:hover {
-  background-color: #092132;
+  background-color: #011627;
 }
 
 .jokerName {
   color: white;
+  font-size: 28px;
 }
 
 .sticker {

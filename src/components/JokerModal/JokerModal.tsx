@@ -2,8 +2,9 @@ import { Dialog, DialogPanel, Button } from '@headlessui/react';
 import { Sticker } from 'types';
 import styles from './JokerModal.module.css';
 import { SERVER_BASE_URI, stickersUriPath } from '../../constants';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
+import { UpdateStickerContext } from 'components/JokerLayout/JokerLayout';
 
 function JokerModal({
   isOpen,
@@ -21,6 +22,7 @@ function JokerModal({
   sticker: Sticker | null;
 }) {
   const [currentSticker, setCurrentSticker] = useState(sticker);
+  const updateSticker = useContext(UpdateStickerContext);
 
   const renderStickers = () => {
     const stickers = Object.values(Sticker).map((s, i) => {
@@ -47,6 +49,8 @@ function JokerModal({
         sticker: currentSticker,
       })
       .catch((error) => console.error(error));
+    // optimistically update ui
+    updateSticker(id, currentSticker);
     onClose();
   };
 

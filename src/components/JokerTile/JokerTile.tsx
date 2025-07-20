@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { stickersUriPath } from '../../constants';
-import { Joker } from 'types';
+import { Sticker } from 'types';
 import styles from './JokerTile.module.css';
 import JokerModal from 'components/JokerModal/JokerModal';
 
-function JokerTile({ id, name, uri, sticker }: Joker) {
+function JokerTile({
+  id,
+  name,
+  uri,
+  sticker,
+}: {
+  id: number;
+  name: string;
+  uri: string;
+  sticker: Sticker | null;
+}) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {

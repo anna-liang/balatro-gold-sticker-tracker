@@ -1,15 +1,30 @@
-import { useState, useEffect, useCallback, JSX } from 'react';
+import { useState, useEffect, useCallback, JSX, createContext } from 'react';
 import JokerTile from 'components/JokerTile/JokerTile';
 import styles from './JokerLayout.module.css';
 import SortByDropdown from 'components/SortByDropdown/SortByDropdown';
 import axios from 'axios';
-import { Joker, SortOptions } from 'types';
+import { Joker, SortOptions, Sticker } from 'types';
 import { SERVER_BASE_URI } from '../../constants';
 import { sortByHelper } from 'components/SortByDropdown/helpers';
+
+export const UpdateStickerContext = createContext(
+  (id: number, sticker: Sticker | null) => {},
+);
 
 function JokerLayout() {
   const [jokerLayout, setJokerLayout] = useState<JSX.Element[]>([]);
   const [jokerProgress, setJokerProgress] = useState<Joker[]>([]);
+
+  const updateSticker = (id: number, sticker: Sticker | null) => {
+    const jokerIndex = jokerProgress.findIndex((joker) => id === joker.id);
+    if (jokerIndex !== -1) {
+      jokerProgress[jokerIndex] = {
+        ...jokerProgress[jokerIndex],
+        sticker: sticker,
+      };
+      setJokerProgress([...jokerProgress]);
+    }
+  };
 
   const fetchJokers = async () => {
     const response = await axios
@@ -52,7 +67,9 @@ function JokerLayout() {
   return (
     <div>
       {<SortByDropdown handleSortBy={handleSortBy} />}
-      <div className={styles.jokerLayout}>{jokerLayout}</div>
+      <UpdateStickerContext.Provider value={updateSticker}>
+        <div className={styles.jokerLayout}>{jokerLayout}</div>
+      </UpdateStickerContext.Provider>
     </div>
   );
 }

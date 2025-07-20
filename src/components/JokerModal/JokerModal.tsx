@@ -42,9 +42,8 @@ function JokerModal({
   };
 
   const handleSave = async () => {
-    const testid = 151;
     await axios
-      .put(`http://localhost:8080/joker/${testid}`, {
+      .put(`http://localhost:8080/joker/${id}`, {
         sticker: currentSticker,
       })
       .catch((error) => console.error(error));

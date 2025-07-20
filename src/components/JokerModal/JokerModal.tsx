@@ -66,8 +66,8 @@ function JokerModal({
       <div className={styles.panelContainer}>
         <DialogPanel>
           <div className={styles.modelContent}>
-            <img src={uri} alt={`${name}`} className={styles.jokerImg} />
             <div className={styles.jokerName}>{name.toUpperCase()}</div>
+            <img src={uri} alt={`${name}`} className={styles.jokerImg} />
             <div className={styles.stickers}>{renderStickers()}</div>
             <div className={styles.buttons}>
               <Button className={styles.saveButton} onClick={handleSave}>

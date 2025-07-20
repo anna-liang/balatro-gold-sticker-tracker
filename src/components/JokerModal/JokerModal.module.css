@@ -5,12 +5,12 @@
 
 .jokerName {
   color: white;
-  margin-top: 15px;
   margin-bottom: 15px;
-  font-size: 28px;
+  font-size: 36px;
 }
 
 .stickers {
+  margin-top: 15px;
   padding: 5px;
 }
 

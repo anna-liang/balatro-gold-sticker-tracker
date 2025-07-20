@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, Button } from '@headlessui/react';
 import { Sticker } from 'types';
 import styles from './JokerModal.module.css';
-import { stickersUriPath } from '../../constants';
+import { SERVER_BASE_URI, stickersUriPath } from '../../constants';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -43,7 +43,7 @@ function JokerModal({
 
   const handleSave = async () => {
     await axios
-      .put(`http://localhost:8080/joker/${id}`, {
+      .put(`${SERVER_BASE_URI}joker/${id}`, {
         sticker: currentSticker,
       })
       .catch((error) => console.error(error));

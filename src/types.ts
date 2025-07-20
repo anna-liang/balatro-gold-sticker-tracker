@@ -9,6 +9,17 @@ export enum Sticker {
   Gold = 'gold',
 }
 
+export const stickerOrder = {
+  [Sticker.White]: 1,
+  [Sticker.Red]: 2,
+  [Sticker.Green]: 3,
+  [Sticker.Black]: 4,
+  [Sticker.Blue]: 5,
+  [Sticker.Purple]: 6,
+  [Sticker.Orange]: 7,
+  [Sticker.Gold]: 8,
+};
+
 export interface Joker {
   id: number;
   name: string;
@@ -17,13 +28,9 @@ export interface Joker {
   description: string;
 }
 
-interface JokerProgressProperties {
-  name: string;
-  uri: string;
-  sticker: Sticker | null;
-  description: string;
-}
-
-export interface JokerProgress {
-  [key: string]: JokerProgressProperties;
+export enum SortOptions {
+  Id = 'Id',
+  Alphanumeric = 'Alphabetically',
+  StickersAsc = 'Stickers Asc',
+  StickersDesc = 'Stickers Desc',
 }

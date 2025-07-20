@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback, JSX } from 'react';
 import JokerTile from 'components/JokerTile/JokerTile';
 import styles from './JokerLayout.module.css';
+import SortByDropdown from 'components/SortByDropdown/SortByDropdown';
 import axios from 'axios';
-import { Joker } from 'types';
+import { Joker, SortOptions } from 'types';
+import { SERVER_BASE_URI } from '../../constants';
+import { sortByHelper } from 'components/SortByDropdown/helpers';
 
 function JokerLayout() {
   const [jokerLayout, setJokerLayout] = useState<JSX.Element[]>([]);
@@ -10,7 +13,7 @@ function JokerLayout() {
 
   const fetchJokers = async () => {
     const response = await axios
-      .get('http://localhost:8080/')
+      .get(SERVER_BASE_URI)
       .then(({ data }) => {
         const jokers = data.map((joker: Joker) => {
           return {
@@ -32,18 +35,23 @@ function JokerLayout() {
   }, [jokerProgress]);
 
   useEffect(() => {
-    async function fetchJokersCaller() {
+    (async function () {
       await fetchJokers();
-    }
-    fetchJokersCaller();
+    })();
   }, []);
 
   useEffect(() => {
     renderJokerProgress();
   }, [jokerProgress, renderJokerProgress]);
 
+  const handleSortBy = (option: SortOptions) => {
+    const sortedResult = sortByHelper({ jokerProgress, option });
+    setJokerProgress([...sortedResult]);
+  };
+
   return (
     <div>
+      {<SortByDropdown handleSortBy={handleSortBy} />}
       <div className={styles.jokerLayout}>{jokerLayout}</div>
     </div>
   );

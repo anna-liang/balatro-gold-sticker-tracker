@@ -1,40 +1,52 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect, useCallback, JSX } from 'react';
 import JokerTile from 'components/JokerTile/JokerTile';
 import styles from './JokerLayout.module.css';
 import axios from 'axios';
+import { Joker } from 'types';
 
 function JokerLayout() {
-  const [jokerProgress, setJokerProgress] = useState<ReactNode[]>([]);
-  const renderJokerProgress = async () => {
-    let jokers: ReactNode[] = [];
-    await axios
+  const [jokerLayout, setJokerLayout] = useState<JSX.Element[]>([]);
+  const [jokerProgress, setJokerProgress] = useState<Joker[]>([]);
+
+  const fetchJokers = async () => {
+    const response = await axios
       .get('http://localhost:8080/')
       .then(({ data }) => {
-        jokers = Object.keys(data).map((key: string) => {
-          data[key].uri =
-            data[key].uri === ''
-              ? `/jokers/${data[key].name}.png`
-              : data[key].uri;
-          const jokerProps = {
-            id: parseInt(key),
-            ...data[key],
+        const jokers = data.map((joker: Joker) => {
+          return {
+            ...joker,
+            uri: joker.uri === '' ? `/jokers/${joker.name}.png` : joker.uri,
           };
-          return <JokerTile {...jokerProps} key={key} />;
         });
+        return jokers;
       })
       .catch((error) => console.error(error));
-    return jokers;
+    setJokerProgress(response);
   };
 
+  const renderJokerProgress = useCallback(async () => {
+    const result = jokerProgress.map((joker: Joker) => {
+      return <JokerTile {...joker} key={joker.name} />;
+    });
+    setJokerLayout(result);
+  }, [jokerProgress]);
+
   useEffect(() => {
-    async function fetchJokers() {
-      const response = await renderJokerProgress();
-      setJokerProgress(response);
+    async function fetchJokersCaller() {
+      await fetchJokers();
     }
-    fetchJokers();
+    fetchJokersCaller();
   }, []);
 
-  return <div className={styles.jokerLayout}>{jokerProgress}</div>;
+  useEffect(() => {
+    renderJokerProgress();
+  }, [jokerProgress, renderJokerProgress]);
+
+  return (
+    <div>
+      <div className={styles.jokerLayout}>{jokerLayout}</div>
+    </div>
+  );
 }
 
 export default JokerLayout;

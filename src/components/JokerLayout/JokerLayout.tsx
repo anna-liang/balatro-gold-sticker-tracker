@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Joker, SortOptions, Sticker } from 'types';
 import { SERVER_BASE_URI } from '../../constants';
 import { sortByHelper } from 'components/SortByDropdown/helpers';
+import GoldStickerCounter from 'components/GoldStickerCounter/GoldStickerCounter';
 
 export const UpdateStickerContext = createContext(
   (id: number, sticker: Sticker | null) => {},
@@ -65,8 +66,13 @@ function JokerLayout() {
   };
 
   return (
-    <div>
-      {<SortByDropdown handleSortBy={handleSortBy} />}
+    <div className={styles.layoutContainer}>
+      <div className={styles.options}>
+        <div>{<SortByDropdown handleSortBy={handleSortBy} />}</div>
+        <div className={styles.goldStickerCounter}>
+          <GoldStickerCounter jokerProgress={jokerProgress} />
+        </div>
+      </div>
       <UpdateStickerContext.Provider value={updateSticker}>
         <div className={styles.jokerLayout}>{jokerLayout}</div>
       </UpdateStickerContext.Provider>

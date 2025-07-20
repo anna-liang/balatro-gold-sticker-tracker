@@ -1,0 +1,15 @@
+.counter {
+  display: flex;
+  align-items: center;
+}
+
+.sticker {
+  width: 42px;
+  height: 42px;
+}
+
+.count {
+  color: white;
+  font-size: 48px;
+  margin-left: 10px;
+}

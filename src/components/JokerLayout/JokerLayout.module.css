@@ -1,6 +1,23 @@
+.layoutContainer {
+  position: relative;
+}
+
 .jokerLayout {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.goldStickerCounter {
+  position: absolute;
+  right: 3.5vw;
 }

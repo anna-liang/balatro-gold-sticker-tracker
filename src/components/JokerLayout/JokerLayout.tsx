@@ -7,6 +7,7 @@ import { Joker, SortOptions, Sticker } from 'types';
 import { SERVER_BASE_URI } from '../../constants';
 import { sortByHelper } from 'components/SortByDropdown/helpers';
 import GoldStickerCounter from 'components/GoldStickerCounter/GoldStickerCounter';
+import SearchBar from 'components/SearchBar/SearchBar';
 
 export const UpdateStickerContext = createContext(
   (id: number, sticker: Sticker | null) => {},
@@ -15,6 +16,7 @@ export const UpdateStickerContext = createContext(
 function JokerLayout() {
   const [jokerLayout, setJokerLayout] = useState<JSX.Element[]>([]);
   const [jokerProgress, setJokerProgress] = useState<Joker[]>([]);
+  const [baseJokerProgress, setBaseJokerProgress] = useState<Joker[]>([]); // All jokers unchanged by filters and search
 
   const updateSticker = (id: number, sticker: Sticker | null) => {
     const jokerIndex = jokerProgress.findIndex((joker) => id === joker.id);
@@ -41,6 +43,7 @@ function JokerLayout() {
       })
       .catch((error) => console.error(error));
     setJokerProgress(response);
+    setBaseJokerProgress(response);
   };
 
   const renderJokerProgress = useCallback(async () => {
@@ -65,9 +68,20 @@ function JokerLayout() {
     setJokerProgress([...sortedResult]);
   };
 
+  const onSearchBarChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase();
+    const searchedJokers = baseJokerProgress.filter(
+      (joker) =>
+        joker.name.toLowerCase().includes(query) ||
+        joker.description.toLowerCase().includes(query),
+    );
+    setJokerProgress([...searchedJokers]);
+  };
+
   return (
     <div className={styles.layoutContainer}>
       <div className={styles.options}>
+        <SearchBar onChange={onSearchBarChange} />
         <div>{<SortByDropdown handleSortBy={handleSortBy} />}</div>
         <div className={styles.goldStickerCounter}>
           <GoldStickerCounter jokerProgress={jokerProgress} />

@@ -84,7 +84,7 @@ function JokerLayout() {
         <SearchBar onChange={onSearchBarChange} />
         <div>{<SortByDropdown handleSortBy={handleSortBy} />}</div>
         <div className={styles.goldStickerCounter}>
-          <GoldStickerCounter jokerProgress={jokerProgress} />
+          <GoldStickerCounter jokerProgress={baseJokerProgress} />
         </div>
       </div>
       <UpdateStickerContext.Provider value={updateSticker}>

@@ -16,6 +16,7 @@ function JokerLayout() {
   const [jokerLayout, setJokerLayout] = useState<JSX.Element[]>([]);
   const [jokerProgress, setJokerProgress] = useState<Joker[]>([]);
   const [baseJokerProgress, setBaseJokerProgress] = useState<Joker[]>([]); // All jokers unchanged by filters and search
+  const [selectedOption, setSelectedOption] = useState(SortOptions.Default);
 
   const updateSticker = (id: number, sticker: Sticker | null) => {
     const jokerIndex = jokerProgress.findIndex((joker) => id === joker.id);
@@ -78,8 +79,10 @@ function JokerLayout() {
     renderJokerProgress();
   }, [jokerProgress, renderJokerProgress]);
 
-  const handleSortBy = (option: SortOptions) => {
-    const sortedResult = sortByHelper({ jokerProgress, option });
+  const handleSortBy = (option: SortOptions, searchedJokers?: Joker[]) => {
+    setSelectedOption(option);
+    const jokersToSort = searchedJokers ?? jokerProgress;
+    const sortedResult = sortByHelper(jokersToSort, option);
     setJokerProgress([...sortedResult]);
   };
 
@@ -91,13 +94,19 @@ function JokerLayout() {
         joker.description.toLowerCase().includes(query),
     );
     setJokerProgress([...searchedJokers]);
+    handleSortBy(selectedOption, searchedJokers);
   };
 
   return (
     <div className={styles.layoutContainer}>
       <div className={styles.options}>
         <SearchBar onChange={onSearchBarChange} />
-        <div>{<SortByDropdown handleSortBy={handleSortBy} />}</div>
+        <div>
+          <SortByDropdown
+            handleSortBy={handleSortBy}
+            selectedOption={selectedOption}
+          />
+        </div>
         <div className={styles.goldStickerCounter}>
           <GoldStickerCounter jokerProgress={baseJokerProgress} />
         </div>

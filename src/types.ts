@@ -29,6 +29,7 @@ export interface Joker {
 }
 
 export enum SortOptions {
+  Default = 'Sort by',
   Id = 'Id',
   Alphanumeric = 'Alphabetically',
   StickersAsc = 'Stickers Asc',

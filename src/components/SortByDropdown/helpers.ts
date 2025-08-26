@@ -1,12 +1,6 @@
 import { Joker, SortOptions, stickerOrder } from 'types';
 
-export const sortByHelper = ({
-  jokerProgress,
-  option,
-}: {
-  jokerProgress: Joker[];
-  option: SortOptions;
-}) => {
+export const sortByHelper = (jokerProgress: Joker[], option: SortOptions) => {
   let sortedResult = jokerProgress;
   switch (option) {
     case SortOptions.Id:

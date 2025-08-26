@@ -1,14 +1,14 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { SortOptions } from '../../types';
 import styles from './SortByDropdown.module.css';
-import { useState } from 'react';
 
 function SortByDropdown({
   handleSortBy,
+  selectedOption,
 }: {
   handleSortBy: (option: SortOptions) => void;
+  selectedOption: SortOptions;
 }) {
-  const [selectedOption, setSelectedOption] = useState('Sort by');
   return (
     <div className={styles.menu}>
       <Menu>
@@ -29,7 +29,6 @@ function SortByDropdown({
                   }}
                   className={styles.menuItem}
                   onClick={() => {
-                    setSelectedOption(optionName);
                     handleSortBy(optionName);
                   }}
                 >

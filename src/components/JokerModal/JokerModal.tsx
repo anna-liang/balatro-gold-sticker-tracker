@@ -44,11 +44,6 @@ function JokerModal({
   };
 
   const handleSave = async () => {
-    await axios
-      .put(`${SERVER_BASE_URI}joker/${id}`, {
-        sticker: currentSticker,
-      })
-      .catch((error) => console.error(error));
     // optimistically update ui
     updateSticker(id, currentSticker);
     onClose();

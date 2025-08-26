@@ -2,12 +2,11 @@ import { useState, useEffect, useCallback, JSX, createContext } from 'react';
 import JokerTile from 'components/JokerTile/JokerTile';
 import styles from './JokerLayout.module.css';
 import SortByDropdown from 'components/SortByDropdown/SortByDropdown';
-import axios from 'axios';
 import { Joker, SortOptions, Sticker } from 'types';
-import { SERVER_BASE_URI } from '../../constants';
 import { sortByHelper } from 'components/SortByDropdown/helpers';
 import GoldStickerCounter from 'components/GoldStickerCounter/GoldStickerCounter';
 import SearchBar from 'components/SearchBar/SearchBar';
+import jokerTemplate from '../../store/joker-progress-template.json';
 
 export const UpdateStickerContext = createContext(
   (id: number, sticker: Sticker | null) => {},
@@ -21,29 +20,47 @@ function JokerLayout() {
   const updateSticker = (id: number, sticker: Sticker | null) => {
     const jokerIndex = jokerProgress.findIndex((joker) => id === joker.id);
     if (jokerIndex !== -1) {
+      // update UI
       jokerProgress[jokerIndex] = {
         ...jokerProgress[jokerIndex],
         sticker: sticker,
       };
       setJokerProgress([...jokerProgress]);
+
+      // update localstorage
+      const jokers = localStorage.getItem('jokerData');
+      if (jokers !== null) {
+        const parsedJokers = JSON.parse(jokers) as Joker[];
+        const index = parsedJokers.findIndex((joker) => id === joker.id);
+        parsedJokers[index] = {
+          ...parsedJokers[index],
+          sticker: sticker,
+        };
+        localStorage.setItem('jokerData', JSON.stringify([...parsedJokers]));
+        setBaseJokerProgress([...parsedJokers]);
+      }
     }
   };
 
-  const fetchJokers = async () => {
-    const response = await axios
-      .get(SERVER_BASE_URI)
-      .then(({ data }) => {
-        const jokers = data.map((joker: Joker) => {
-          return {
-            ...joker,
-            uri: joker.uri === '' ? `/jokers/${joker.name}.png` : joker.uri,
-          };
+  const fetchJokers = () => {
+    const jokerData = localStorage.getItem('jokerData');
+    if (jokerData !== null) {
+      setJokerProgress(JSON.parse(jokerData));
+      setBaseJokerProgress(JSON.parse(jokerData));
+    } else {
+      // Load jokers from template if none exist in localstorage
+      const jokers = [];
+      for (const [key, value] of Object.entries(jokerTemplate)) {
+        jokers.push({
+          id: parseInt(key),
+          ...value,
+          uri: value.uri === '' ? `/jokers/${value.name}.png` : value.uri,
         });
-        return jokers;
-      })
-      .catch((error) => console.error(error));
-    setJokerProgress(response);
-    setBaseJokerProgress(response);
+      }
+      setJokerProgress(jokers);
+      setBaseJokerProgress(jokers);
+      localStorage.setItem('jokerData', JSON.stringify(jokers));
+    }
   };
 
   const renderJokerProgress = useCallback(async () => {
@@ -54,9 +71,7 @@ function JokerLayout() {
   }, [jokerProgress]);
 
   useEffect(() => {
-    (async function () {
-      await fetchJokers();
-    })();
+    fetchJokers();
   }, []);
 
   useEffect(() => {

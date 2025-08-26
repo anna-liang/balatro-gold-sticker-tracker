@@ -611,6 +611,12 @@
     "sticker": null,
     "description": "Retrigger all cards played for the next 10 hands"
   },
+  "103": {
+    "name": "Castle",
+    "uri": "",
+    "sticker": null,
+    "description": "This Joker gains +3 Chips per discarded [suit] card, suit changes every round"
+  },
   "104": {
     "name": "Smiley Face",
     "uri": "",

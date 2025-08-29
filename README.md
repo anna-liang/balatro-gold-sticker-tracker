@@ -9,7 +9,7 @@ Supports recording sticker progress, sorting, and searching.
 To run the development server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
-Run the server [here](https://github.com/anna-liang/balatro-gold-sticker-tracker-server)
+You can visit the app [here](https://anna-liang.github.io/balatro-gold-sticker-tracker/)!

@@ -7,6 +7,7 @@ import { sortByHelper } from 'components/SortByDropdown/helpers';
 import GoldStickerCounter from 'components/GoldStickerCounter/GoldStickerCounter';
 import SearchBar from 'components/SearchBar/SearchBar';
 import jokerTemplate from '../../store/joker-progress-template.json';
+import { repoPath } from '../../constants';
 
 export const UpdateStickerContext = createContext(
   (id: number, sticker: Sticker | null) => {},
@@ -55,7 +56,10 @@ function JokerLayout() {
         jokers.push({
           id: parseInt(key),
           ...value,
-          uri: value.uri === '' ? `/jokers/${value.name}.png` : value.uri,
+          uri:
+            value.uri === ''
+              ? `${repoPath}/jokers/${value.name}.png`
+              : value.uri,
         });
       }
       setJokerProgress(jokers);

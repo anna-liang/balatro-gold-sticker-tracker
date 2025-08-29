@@ -1,9 +1,8 @@
 import { Dialog, DialogPanel, Button } from '@headlessui/react';
 import { Sticker } from 'types';
 import styles from './JokerModal.module.css';
-import { SERVER_BASE_URI, stickersUriPath } from '../../constants';
+import { stickersUriPath } from '../../constants';
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import { UpdateStickerContext } from 'components/JokerLayout/JokerLayout';
 
 function JokerModal({

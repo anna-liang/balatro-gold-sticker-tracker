@@ -1,3 +1,3 @@
-export const stickersUriPath = '/stickers/';
+export const repoPath = '/balatro-gold-sticker-tracker';
 
-export const SERVER_BASE_URI = 'http://localhost:8080/';
+export const stickersUriPath = `${repoPath}/stickers/`;

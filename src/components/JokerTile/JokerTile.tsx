@@ -7,11 +7,13 @@ import JokerModal from 'components/JokerModal/JokerModal';
 function JokerTile({
   id,
   name,
+  description,
   uri,
   sticker,
 }: {
   id: number;
   name: string;
+  description: string;
   uri: string;
   sticker: Sticker | null;
 }) {
@@ -43,6 +45,7 @@ function JokerTile({
         onClose={handleCloseModal}
         id={id}
         name={name}
+        description={description}
         uri={uri}
         sticker={sticker}
       />

@@ -10,6 +10,7 @@ function JokerModal({
   onClose,
   id,
   name,
+  description,
   uri,
   sticker,
 }: {
@@ -17,6 +18,7 @@ function JokerModal({
   onClose: () => void;
   id: number;
   name: string;
+  description: string;
   uri: string;
   sticker: Sticker | null;
 }) {
@@ -62,6 +64,7 @@ function JokerModal({
           <div className={styles.modelContent}>
             <div className={styles.jokerName}>{name.toUpperCase()}</div>
             <img src={uri} alt={`${name}`} className={styles.jokerImg} />
+            <div className={styles.jokerDescription}>{description}</div>
             <div className={styles.stickers}>{renderStickers()}</div>
             <div className={styles.buttons}>
               <Button className={styles.saveButton} onClick={handleSave}>

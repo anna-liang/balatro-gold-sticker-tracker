@@ -9,6 +9,12 @@
   font-size: 36px;
 }
 
+.jokerDescription {
+  color: white;
+  margin-top: 15px;
+  font-size: 24px;
+}
+
 .stickers {
   margin-top: 15px;
   padding: 5px;
@@ -48,6 +54,7 @@
   border-width: 2px;
   border-color: #248cd1;
   border-style: solid;
+  padding: 20px;
 }
 
 .buttons {

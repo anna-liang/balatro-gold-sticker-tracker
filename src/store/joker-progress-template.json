@@ -599,7 +599,7 @@
     "sticker": null,
     "description": "x2 Mult, loses x0.01 Mult per card discarded"
   },
-  "101 ": {
+  "101": {
     "name": "Walkie Talkie",
     "uri": "",
     "sticker": null,
@@ -807,7 +807,7 @@
     "name": "The Tribe",
     "uri": "",
     "sticker": null,
-    "description": " Mult if played hand contains a Flush"
+    "description": "x2 Mult if played hand contains a Flush"
   },
   "136": {
     "name": "Stuntman",

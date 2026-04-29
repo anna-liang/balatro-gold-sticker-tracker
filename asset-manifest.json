@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/balatro-gold-sticker-tracker/static/css/main.cd539fd2.css",
-    "main.js": "/balatro-gold-sticker-tracker/static/js/main.64fe97f7.js",
+    "main.js": "/balatro-gold-sticker-tracker/static/js/main.44af26ba.js",
     "index.html": "/balatro-gold-sticker-tracker/index.html",
     "main.cd539fd2.css.map": "/balatro-gold-sticker-tracker/static/css/main.cd539fd2.css.map",
-    "main.64fe97f7.js.map": "/balatro-gold-sticker-tracker/static/js/main.64fe97f7.js.map"
+    "main.44af26ba.js.map": "/balatro-gold-sticker-tracker/static/js/main.44af26ba.js.map"
   },
   "entrypoints": [
     "static/css/main.cd539fd2.css",
-    "static/js/main.64fe97f7.js"
+    "static/js/main.44af26ba.js"
   ]
 }
